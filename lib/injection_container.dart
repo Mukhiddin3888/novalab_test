@@ -63,5 +63,5 @@ Future<void> init()  async {
   var directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
 
-  sl.registerLazySingleton(() => Hive);
+ // sl.registerLazySingleton(() => Hive);
 }

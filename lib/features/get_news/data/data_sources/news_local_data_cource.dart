@@ -10,19 +10,19 @@ abstract class NewsLocalDataSource {
 
   List getLastNews();
 
-  Future<void> cacheData(List albumsToCache,);
+  Future<void> cacheData(List dataToCache);
 
 }
 
 
 class NewsLocalDataSourceImpl implements NewsLocalDataSource{
   @override
-  Future<void> cacheData(List<dynamic> dataToCache) {
+  Future<void> cacheData(List dataToCache) {
     return HiveStoreMe.putData(boxName: 'news', keyWord: 'all', data: dataToCache);
   }
 
   @override
-  List getLastNews() {
+  List getLastNews()  {
     var ldata =  Hive.box('news').get('all') ;
 
     if(ldata != null){

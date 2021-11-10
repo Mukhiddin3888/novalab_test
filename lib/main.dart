@@ -8,9 +8,9 @@ import 'features/get_news/domain/entity/news_entity.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await di.init();
-  Hive.registerAdapter(NewsEntityAdapter());
-  Hive.openBox('news');
+  await di.init();
+  Hive..registerAdapter(NewsEntityAdapter());
+  Hive.openBox<List>('news');
   runApp(const MyApp());
 }
 

@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('ksjc'),),
+      appBar: AppBar(title: Text('News'),),
 
       body: BlocProvider(
         create: (context) => sl<NewsBloc>(),
@@ -25,9 +25,9 @@ class HomeScreen extends StatelessWidget {
             }
             if (state is NewsLoaded) {
               return ListView.builder(
-                  itemCount: 6,
+                  itemCount: state.news.length,
                   itemBuilder: (context, index) {
-                    return  ListTile(title: Text(' mksdn,s sn'),);
+                    return  ListTile(title: Text(state.news[index].title),);
                   }
               );
             }
