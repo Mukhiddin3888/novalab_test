@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
 import 'package:novalab_test/injection_container.dart' as di;
 
 import 'features/get_news/domain/entity/news_entity.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: Scaffold(body: Container(child: Center(child: Text('jkragbs')),))
+      home: HomeScreen()
     );
   }
 }

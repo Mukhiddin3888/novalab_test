@@ -27,9 +27,14 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource{
 
 
 
-    final response =  await dio.get(url);
+    final response =  await dio.get(url,options: Options(
+      headers: {
+        'Authorization': 'Bearer pub_21438d2c8a6d9a7e731d80d2e4ae1ad5cd11 ',
+      }
+    ));
 
     if(response.statusCode == 200){
+      print(response.data["results"]);
       List<NewsModel> news = (response.data["results"] as List)
           .map(
             (e) => NewsModel.fromJson(e as Map<String, dynamic>),
