@@ -7,7 +7,7 @@ import 'package:novalab_test/core/usecase/usecases.dart';
 import 'package:novalab_test/features/get_news/domain/entity/news_entity.dart';
 import 'package:novalab_test/features/get_news/domain/repository/news_repository.dart';
 
-class GetNewsUseCase implements UseCase<List<NewsEntity>, Params>{
+class GetNewsUseCase implements UseCase<List<NewsEntity>, NoParams>{
 
   final NewsRepository repository;
 
