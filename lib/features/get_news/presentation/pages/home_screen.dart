@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               return ListView.builder(
                   itemCount: 6,
                   itemBuilder: (context, index) {
-                    return const ListTile(title: Text('mksdn,s sn'),);
+                    return  ListTile(title: Text(' mksdn,s sn'),);
                   }
               );
             }
