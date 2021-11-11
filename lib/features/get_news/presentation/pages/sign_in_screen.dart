@@ -1,15 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novalab_test/core/utils/utils.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/sign_up_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/widgets/sign_button.dart';
 
+import '../../../../auth.dart';
 
-class SigInScreen extends StatelessWidget {
-  const SigInScreen({Key? key}) : super(key: key);
 
+class SignInScreen extends StatelessWidget {
+   SignInScreen({Key? key}) : super(key: key);
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+
+
     var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -31,24 +41,46 @@ class SigInScreen extends StatelessWidget {
 
                 const Spacer(),
 
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
                   hintText: 'Email',
                 ),),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(
                   hintText: 'Password',
                 ),),
 
                 const Spacer(),
 
-                const SignInUpButton(title: 'Sign In',),
+                GestureDetector(
+                    onTap: (){
+                      AuthenticationHelper()
+                          .signIn(email: emailController.text.toString(),
+                          password: passwordController.text.toString())
+                          .then((result) {
+                        if (result == null) {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => HomeScreen()));
+                        } else {
+                          print(result);
+                        }
+                      });
+                    },
+                    child: const SignInUpButton(title: 'Sign In',)),
 
                 const Padding(
                   padding: EdgeInsets.only(top: 22,bottom: 6),
                   child: Text("Don't have an Account", style: MyTextStyles.notoSansNormal),
                 ),
-                Text('Sign Up', style: MyTextStyles.notoSansBold.copyWith(color: MyColors.primary, fontSize: 15),),
+                GestureDetector(
+                    onTap: (){
+                      Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) {
+                        return  SignUpScreen();
+                      },));
+                    },
+                    child: Text('Sign Up', style: MyTextStyles.notoSansBold.copyWith(color: MyColors.primary, fontSize: 15),)),
                 const SizedBox(height: 36,)
               ],
             ),

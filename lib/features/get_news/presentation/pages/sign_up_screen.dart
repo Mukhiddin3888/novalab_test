@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:novalab_test/core/utils/utils.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/widgets/sign_button.dart';
+
+import '../../../../auth.dart';
 
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+   SignUpScreen({Key? key}) : super(key: key);
+
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -29,7 +37,6 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(height: 16,),
                 const Text('Sign up',style: MyTextStyles.notoSansBold,),
 
-
                 const Spacer(),
 
                TextField(
@@ -38,11 +45,16 @@ class SignUpScreen extends StatelessWidget {
                     hintStyle: MyTextStyles.notoSansNormal.copyWith(color: MyColors.grey)
                   ),),
                  TextField(
+                   controller: emailController,
+                  onSubmitted: (value){},
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'Email',
                       hintStyle: MyTextStyles.notoSansNormal.copyWith(color: MyColors.grey)
                   ),),
                  TextField(
+                   controller: passwordController,
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     hintText: 'Password',
                       hintStyle: MyTextStyles.notoSansNormal.copyWith(color: MyColors.grey)
@@ -51,7 +63,21 @@ class SignUpScreen extends StatelessWidget {
 
                 const Spacer(),
 
-                const SignInUpButton(title: 'Sign Up',),
+                GestureDetector(
+                    onTap:(){
+                      AuthenticationHelper()
+                          .signUp(email: emailController.text.toString(),
+                          password: passwordController.text.toString())
+                          .then((result) {
+                        if (result == null) {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => HomeScreen()));
+                        } else {
+                         print(result);
+                        }
+                      });
+                    },
+                    child: const SignInUpButton(title: 'Sign Up',)),
 
                 const SizedBox(height: 24,),
 
