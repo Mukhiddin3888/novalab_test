@@ -98,8 +98,12 @@ flutter:
     - family: openSans
       fonts:
         - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+
+    - family: notoSans
+      fonts:
+        - asset: assets/fonts/noto_sans/NotoSans-Regular.ttf
+        - asset: assets/fonts/noto_sans/NotoSans-BoldItalic.ttf
+          weight: 700
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

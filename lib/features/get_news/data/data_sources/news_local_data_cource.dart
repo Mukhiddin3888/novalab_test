@@ -23,7 +23,7 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource{
 
   @override
   List getLastNews()  {
-    var ldata =  Hive.box('news').get('all') ;
+    var ldata =  Hive.box<List>('news').get('all') ;
 
     if(ldata != null){
       return ldata;
