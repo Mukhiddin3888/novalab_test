@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:novalab_test/features/get_news/presentation/pages/sign_in_screen.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/sign_up_screen.dart';
 import 'package:novalab_test/injection_container.dart' as di;
 
 import 'features/get_news/domain/entity/news_entity.dart';
@@ -10,7 +10,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   Hive..registerAdapter(NewsEntityAdapter());
-  Hive.openBox<List>('news');
+  await Hive.openBox<List>('news');
   runApp(const MyApp());
 }
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 
       ),
 
-      home: SigInScreen()
+      home: SignUpScreen()
     );
   }
 }
