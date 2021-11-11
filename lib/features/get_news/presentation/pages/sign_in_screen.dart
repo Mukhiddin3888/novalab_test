@@ -62,7 +62,7 @@ class SignInScreen extends StatelessWidget {
                           .then((result) {
                         if (result == null) {
                           Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) => HomeScreen()));
+                              CupertinoPageRoute(builder: (context) => HomeScreen()));
                         } else {
                           print(result);
                         }

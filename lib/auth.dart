@@ -21,6 +21,8 @@ class AuthenticationHelper {
   Future signIn({required String email, required String password}) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      var token = await _auth.currentUser?.getIdToken();
+      print('user token: $token');
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
