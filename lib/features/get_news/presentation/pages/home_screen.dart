@@ -6,6 +6,7 @@ import 'package:novalab_test/core/utils/colors/my_colors.dart';
 import 'package:novalab_test/core/utils/icons/icons.dart';
 import 'package:novalab_test/core/utils/styles/my_styles.dart';
 import 'package:novalab_test/features/get_news/presentation/news_bloc/news_bloc.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/news_full_screen.dart';
 import 'package:novalab_test/injection_container.dart';
 
 
@@ -18,7 +19,9 @@ class HomeScreen extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: MyColors.primary,
-      appBar: AppBar(title: Center(child: Text('News',style: MyTextStyles.openSansNormal,)),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('News',style: MyTextStyles.openSansNormal.copyWith(color: MyColors.white),),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Padding(
@@ -80,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(state.news[index].title, style: MyTextStyles.rubikNormal,),
+                                  Text(state.news[index].title, style: MyTextStyles.rubikNormal.copyWith(fontSize: 16),),
                                   Container(
                                     padding: const EdgeInsets.only(top: 10,bottom: 10),
                                     child: Text('Category',style: MyTextStyles.rubikNormal.copyWith(color: Colors.grey),),
@@ -90,13 +93,19 @@ class HomeScreen extends StatelessWidget {
                                   maxLines: 3,
                                   ),
                                   SizedBox(height: 24,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text('Details',style: MyTextStyles.rubikNormal.copyWith(color: MyColors.primary),),
-                                      SizedBox(width: 8,),
-                                      SvgPicture.asset(MyIcons.arrow_right,color: MyColors.primary,height: 24,width: 24,)
-                                    ],
+                                  GestureDetector(
+                                    onTap:(){
+                                      Navigator.push(context,
+                                          CupertinoPageRoute(builder:(context) => NewsFullScreen(news: state.news[index],),));
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text('Details',style: MyTextStyles.rubikNormal.copyWith(color: MyColors.primary),),
+                                        SizedBox(width: 8,),
+                                        SvgPicture.asset(MyIcons.arrow_right,color: MyColors.primary,height: 24,width: 24,)
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
