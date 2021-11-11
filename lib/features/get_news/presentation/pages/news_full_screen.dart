@@ -13,9 +13,13 @@ class NewsFullScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyColors.white,
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(14.0),
-          child: SvgPicture.asset(MyIcons.arrow_left),
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: SvgPicture.asset(MyIcons.arrow_left),),
         ),
         elevation: 0,
         backgroundColor: MyColors.white,
@@ -27,6 +31,7 @@ class NewsFullScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 16),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             Container(
               height: 256,
@@ -34,8 +39,6 @@ class NewsFullScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.green
               ),
-
-             // child:Image(image: NetworkImage(''),),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
