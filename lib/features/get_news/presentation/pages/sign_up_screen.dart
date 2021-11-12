@@ -6,7 +6,7 @@ import 'package:novalab_test/features/get_news/presentation/pages/home_screen.da
 import 'package:novalab_test/features/get_news/presentation/pages/sign_in_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/widgets/sign_button.dart';
 
-import '../../../../auth.dart';
+import '../../../authintification/auth.dart';
 
 
 class SignUpScreen extends StatelessWidget {
