@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:novalab_test/core/utils/utils.dart';
 import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
+import 'package:novalab_test/features/get_news/presentation/pages/sign_in_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/widgets/sign_button.dart';
 
 import '../../../../auth.dart';
@@ -81,13 +83,18 @@ class SignUpScreen extends StatelessWidget {
 
                 const SizedBox(height: 24,),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Have an Account? ", style: MyTextStyles.notoSansNormal),
-                    Text('Sign In', style: MyTextStyles.notoSansBold.copyWith(color: MyColors.primary, fontSize: 15),),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => SignInScreen(),));
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Have an Account? ", style: MyTextStyles.notoSansNormal),
+                      Text('Sign In', style: MyTextStyles.notoSansBold.copyWith(color: MyColors.primary, fontSize: 15),),
 
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 36,)
               ],

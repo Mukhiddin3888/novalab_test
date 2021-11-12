@@ -12,9 +12,9 @@ class NewsModel extends NewsEntity{
 
   factory NewsModel.fromJson(Map<String, dynamic> json){
     return NewsModel(
-      title: json["name"] ,
+      title: json["title"] ,
       description: json["body"] ,
-      imageUrl: json["email"] ,
+      imageUrl: json["img_url"] ,
     );
   }
 }

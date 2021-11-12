@@ -24,20 +24,22 @@ class NewsFullScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: MyColors.white,
         centerTitle: true,
-        title: Text('Details',style: MyTextStyles.rubikNormal,),
+        title: const Text('Details',style: MyTextStyles.rubikNormal,),
       actions: [SvgPicture.asset(MyIcons.share), SizedBox(width: 18,)],
       ),
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 16),
         child: ListView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             Container(
               height: 256,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Colors.green
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage('http://${news.imageUrl}'))
               ),
             ),
             Padding(
@@ -45,7 +47,7 @@ class NewsFullScreen extends StatelessWidget {
               child: Text(news.title,style: MyTextStyles.rubikNormal.copyWith(fontSize: 16),),
             ),
             Text('Category',style: MyTextStyles.rubikNormal.copyWith(color: MyColors.grey),),
-            SizedBox(height: 24,),
+            const SizedBox(height: 24,),
             Text(news.description,style: MyTextStyles.rubikNormal.copyWith(color: MyColors.grey),),
           ],
         ),

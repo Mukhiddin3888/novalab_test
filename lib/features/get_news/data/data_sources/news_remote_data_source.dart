@@ -21,8 +21,8 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource{
   NewsRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<List<NewsModel>> getNews() => _getNewsFromUrl('https://jsonplaceholder.typicode.com/comments?postId=1');
-// //https://newsdata.io/api/1/news?apikey=pub_21438d2c8a6d9a7e731d80d2e4ae1ad5cd11
+  Future<List<NewsModel>> getNews() => _getNewsFromUrl('https://pakhtakor.000webhostapp.com/api/posts');
+
   Future<List<NewsModel>> _getNewsFromUrl( url)async{
 
 
@@ -31,11 +31,12 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource{
 
     if(response.statusCode == 200){
   //    print(response.data["results"]);
-      List<NewsModel> news = (response.data as List)
+      List<NewsModel> news = (response.data["data"] as List)
           .map(
             (e) => NewsModel.fromJson(e as Map<String, dynamic>),
       )
           .toList();
+      print(news[1].imageUrl);
       return news ;
     }else{
       throw ServerException();

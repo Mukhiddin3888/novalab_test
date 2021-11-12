@@ -41,6 +41,7 @@ class NewsRepositoryImpl implements NewsRepository{
       } on CacheException{
         return Left(CacheFailure());
       }
+
     }
 
   }

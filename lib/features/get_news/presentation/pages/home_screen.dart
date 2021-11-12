@@ -41,6 +41,7 @@ class HomeScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is NewsLoaded) {
+              print(state.news[0].imageUrl);
               return Stack(
                 children: [
                   Align(
@@ -53,14 +54,17 @@ class HomeScreen extends StatelessWidget {
                       overflow: Overflow.visible,
                       children: [
                         Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
+                          decoration:  BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                                image: NetworkImage('http://${state.news[index].imageUrl}')),
+
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(16),
                                 topRight: Radius.circular(16)),
-                           color: Colors.yellowAccent,
 
                           ),
-                          margin: EdgeInsets.only(left: 12,right: 12,top: 12),
+                          margin: const EdgeInsets.only(left: 12,right: 12,top: 12),
                           height: 265,
 
                         ),
