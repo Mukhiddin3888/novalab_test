@@ -10,6 +10,7 @@ Future<void> main() async {
   await di.init();
   Hive..registerAdapter(NewsEntityAdapter());
   await Hive.openBox<List>('news');
+  await Hive.openBox<bool>('user');
   runApp(const MyApp());
 }
 

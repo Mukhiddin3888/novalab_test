@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:novalab_test/core/utils/utils.dart';
-import 'package:novalab_test/features/authintification/auth.dart';
-import 'package:novalab_test/features/authintification/logic/input_validator.dart';
+import 'package:novalab_test/features/authintification/logic/sign_up_validator.dart';
 import 'package:novalab_test/features/authintification/presentation/sign_in_screen.dart';
-import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/widgets/sign_button.dart';
 
 
@@ -102,30 +100,4 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-void signUp({ required String email, required String password, context }) {
-  if(checkIt(email: email, password: password)){
-    AuthenticationHelper()
-        .signUp(email: email,
-        password: password )
-        .then((result) {
-      if (result == null) {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HomeScreen()));
-      } else {
 
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              backgroundColor: Colors.red,
-              content: Text("Invalid input "),
-            ));
-      }
-    });
-  }else{
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.red,
-          content: Text('Invalid input'),
-        ));
-  }
-
-}
