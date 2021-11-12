@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:novalab_test/features/authintification/presentation/sign_in_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
 import 'package:novalab_test/injection_container.dart' as di;
 import 'features/get_news/domain/entity/news_entity.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
   await di.init();
   Hive..registerAdapter(NewsEntityAdapter());
   await Hive.openBox<List>('news');
+  await Hive.openBox<bool>('user');
   runApp(const MyApp());
 }
 
@@ -18,11 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ldata =  Hive.box<bool>('user').get('user') ;
+
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: HomeScreen()
+      home: ldata != null ? HomeScreen() : SignInScreen()
     );
   }
 }
