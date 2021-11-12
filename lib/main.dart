@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
+import 'package:novalab_test/features/authintification/presentation/sign_in_screen.dart';
 import 'package:novalab_test/injection_container.dart' as di;
 import 'features/get_news/domain/entity/news_entity.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: HomeScreen()
+      home: SignInScreen()
     );
   }
 }

@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novalab_test/core/utils/utils.dart';
-import 'package:novalab_test/features/get_news/presentation/pages/home_screen.dart';
-import 'package:novalab_test/features/get_news/presentation/pages/sign_up_screen.dart';
+import 'package:novalab_test/features/authintification/logic/user_validator_sign_in.dart';
+import 'package:novalab_test/features/authintification/presentation/sign_up_screen.dart';
 import 'package:novalab_test/features/get_news/presentation/widgets/sign_button.dart';
 
-import '../../../authintification/auth.dart';
 
 
 class SignInScreen extends StatelessWidget {
@@ -41,12 +40,13 @@ class SignInScreen extends StatelessWidget {
 
                 const Spacer(),
 
-                TextField(
+                TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
+
                   hintText: 'Email',
                 ),),
-                TextField(
+                TextFormField(
                   controller: passwordController,
                   decoration: const InputDecoration(
                   hintText: 'Password',
@@ -56,17 +56,7 @@ class SignInScreen extends StatelessWidget {
 
                 GestureDetector(
                     onTap: (){
-                      AuthenticationHelper()
-                          .signIn(email: emailController.text.toString(),
-                          password: passwordController.text.toString())
-                          .then((result) {
-                        if (result == null) {
-                          Navigator.pushReplacement(context,
-                              CupertinoPageRoute(builder: (context) => HomeScreen()));
-                        } else {
-                          print(result);
-                        }
-                      });
+                      login(emailController.text.toString(), passwordController.text.toString(), context);
                     },
                     child: const SignInUpButton(title: 'Sign In',)),
 
@@ -90,4 +80,5 @@ class SignInScreen extends StatelessWidget {
     );
   }
 }
+
 
