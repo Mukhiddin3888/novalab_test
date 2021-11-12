@@ -41,7 +41,6 @@ class HomeScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is NewsLoaded) {
-              print(state.news[0].imageUrl);
               return Stack(
                 children: [
                   Align(

@@ -36,7 +36,6 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource{
             (e) => NewsModel.fromJson(e as Map<String, dynamic>),
       )
           .toList();
-      print(news[1].imageUrl);
       return news ;
     }else{
       throw ServerException();

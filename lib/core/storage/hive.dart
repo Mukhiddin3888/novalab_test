@@ -8,5 +8,9 @@ class HiveStoreMe{
    await Hive.box<List>(boxName).put(keyWord, data);
   }
 
+ static  putToken({required String boxName,required String keyWord ,required bool data})async{
+   await Hive.box<bool>(boxName).put(keyWord, data);
+  }
+
 
 }
